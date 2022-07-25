@@ -9,6 +9,7 @@ using std::endl;
 
 void init();
 void addNote();
+void removeNote();
 void printNote();
 void config();
 
@@ -20,17 +21,21 @@ int main()
 		system("cls");//清屏
 		cout << "按0退出" << endl
 			<< "按1添加Note" << endl
-			<< "按2查看Note" << endl
-			<< "按3进行设置" << endl;
+			<< "按2删除Note" << endl
+			<< "按3查看Note" << endl
+			<< "按4进行设置" << endl;
 		buffer = _getch();//无需回车即可读入
 		switch (buffer) {
 		case '1':
 			addNote();
 			continue;
 		case '2':
-			printNote();
+			removeNote();
 			continue;
 		case '3':
+			printNote();
+			continue;
+		case '4':
 			config();
 			continue;
 		case '0':
@@ -87,6 +92,28 @@ void addNote()
 	//保存
 	tempNote.set(tempLabel, tempName, tempContent, score);
 	tempNote.save();
+	return;
+}
+
+void removeNote()
+{
+	int buffer;
+	system("cls");
+	if (Note::names.size() > 0) {
+		for (int i = 0; i < Note::names.size(); ++i)
+			cout << i + 1 << '-' << Note::names[i] << endl;
+		cout << "请选择Note：";
+		cin >> buffer;
+		system("cls");
+		if (buffer > 0 && buffer <= Note::names.size()) {
+			Note::removeNote(buffer - 1);
+		}
+		else
+			cout << "该Note不存在" << endl;
+	}
+	else
+		cout << "无可用Note" << endl;
+	_getch();
 	return;
 }
 

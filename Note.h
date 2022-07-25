@@ -29,6 +29,7 @@ public:
 	static void createLabel();
 	static void removeLabel(int index);
 	static void printLabel();
+	static void removeNote(int index);
 	Note();
 	Note(string label, string name, string content, int score);
 	void set(string label, string name, string content, int score);

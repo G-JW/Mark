@@ -88,6 +88,14 @@ void Note::printLabel()
 	cout << endl;
 }
 
+void Note::removeNote(int index)
+{
+	if (remove(getPath(names[index]).c_str()) == 0) {
+		cout << "³É¹¦É¾³ý" << names[index] << endl;
+		Note::names.erase(Note::names.begin() + index);
+	}
+}
+
 Note::Note()
 {
 	label = "defaultLabel";
